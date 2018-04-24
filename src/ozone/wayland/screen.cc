@@ -59,6 +59,7 @@ WaylandScreen::WaylandScreen(wl_registry* registry, uint32_t id)
 #if defined(OS_WEBOS)
     WaylandScreen::OutputDone,
 #endif
+    WaylandScreen::OutputHandleScale,
   };
 
   output_ =
@@ -184,5 +185,12 @@ void WaylandScreen::OutputDone(void* data, struct wl_output* wl_output) {
   }
 }
 #endif
+
+// static
+void WaylandScreen::OutputHandleScale(void*,
+                                      struct wl_output*,
+                                      int32_t scale_factor) {
+  NOTIMPLEMENTED() << " SCALE FACTOR " << scale_factor;
+}
 
 }  // namespace ozonewayland
