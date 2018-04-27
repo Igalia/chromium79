@@ -102,6 +102,7 @@ class OzoneWaylandWindow : public PlatformWindow,
   void SizeConstraintsChanged() override;
   void SetWindowProperty(const std::string& name,
                          const std::string& value) override;
+  void SetSurfaceId(int surface_id) override;
   void SetLocationHint(gfx::LocationHint value) override;
   void ResetCustomCursor() override;
   void CreateGroup(const WindowGroupConfiguration&) override;
@@ -173,6 +174,7 @@ class OzoneWaylandWindow : public PlatformWindow,
       neva_app_runtime::CustomCursorType::kNotUse;
   bool allowed_cursor_overriding_ = false;
   base::WeakPtrFactory<OzoneWaylandWindow> weak_factory_;
+  int surface_id_;
 
   DISALLOW_COPY_AND_ASSIGN(OzoneWaylandWindow);
 };

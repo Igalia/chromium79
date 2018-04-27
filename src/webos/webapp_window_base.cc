@@ -245,6 +245,10 @@ void WebAppWindowBase::SetLocationHint(LocationHint value) {
     webapp_window_->SetLocationHint(ToGfxLocationHint(value));
 }
 
+void WebAppWindowBase::SetWindowSurfaceId(int surface_id) {
+  webapp_window_->SetWindowSurfaceId(surface_id);
+}
+
 void WebAppWindowBase::SetOpacity(float opacity) {
   // SetRootLayerOpacity instead of SetOpacity should be called for WebOS
   if (webapp_window_)

@@ -49,6 +49,7 @@ class AURA_EXPORT WindowTreeHostNeva {
   virtual void SetUseVirtualKeyboard(bool enable) {}
   virtual void SetWindowProperty(const std::string& name,
                                  const std::string& value) {}
+  virtual void SetWindowSurfaceId(int surface_id) {} 
   virtual void SetLocationHint(gfx::LocationHint value) {}
   virtual void ToggleFullscreen() {}
   virtual void XInputActivate(const std::string& type) {}

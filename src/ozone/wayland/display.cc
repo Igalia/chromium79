@@ -352,7 +352,8 @@ void WaylandDisplay::InitializeDisplay() {
   }
 }
 
-WaylandWindow* WaylandDisplay::CreateAcceleratedSurface(unsigned w) {
+WaylandWindow* WaylandDisplay::CreateAcceleratedSurface(unsigned w,
+                                                        int surface_id) {
   WaylandWindow* window = new WaylandWindow(w);
   widget_map_[w].reset(window);
 
@@ -503,9 +504,9 @@ void WaylandDisplay::SetWidgetTitle(unsigned w, const base::string16& title) {
   widget->SetWindowTitle(title);
 }
 
-void WaylandDisplay::CreateWidget(unsigned widget) {
+void WaylandDisplay::CreateWidget(unsigned widget, int surface_id) {
   DCHECK(!GetWidget(widget));
-  CreateAcceleratedSurface(widget);
+  CreateAcceleratedSurface(widget, surface_id);
 }
 
 void WaylandDisplay::InitWindow(unsigned handle,

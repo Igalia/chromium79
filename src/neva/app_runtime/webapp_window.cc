@@ -382,6 +382,15 @@ void WebAppWindow::SetLocationHint(gfx::LocationHint value) {
   wth->SetLocationHint(value);
 }
 
+void WebAppWindow::SetWindowSurfaceId(int surface_id) {
+  window_surface_id_ = surface_id;
+
+  if (!host_)
+    return;
+
+  host_->SetWindowSurfaceId(surface_id);
+}
+
 void WebAppWindow::Show() {
   if (widget_)
     widget_->Show();

@@ -58,6 +58,8 @@ class AURA_EXPORT WindowTreeHostPlatform : public WindowTreeHost,
   ///@{
   void SetWindowProperty(const std::string& name,
                          const std::string& value) override;
+  void SetWindowSurfaceId(int surface_id) override;
+
   void ToggleFullscreen() override;
   ///@}
 
