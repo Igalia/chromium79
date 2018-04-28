@@ -56,6 +56,7 @@ class STUB_WINDOW_EXPORT StubWindow : public PlatformWindowBase {
   void SetWindowIcons(const gfx::ImageSkia& window_icon,
                       const gfx::ImageSkia& app_icon) override;
   void SizeConstraintsChanged() override;
+  void SetSurfaceId(int surface_id) override;
 
   PlatformWindowDelegate* delegate_;
   gfx::Rect bounds_;

@@ -106,7 +106,8 @@ inline gfx::LocationHint ToGfxLocationHint(
 ///////////////////////////////////////////////////////////////////////////////
 // WebAppWindowBase, public:
 
-WebAppWindowBase::WebAppWindowBase() {}
+WebAppWindowBase::WebAppWindowBase()
+    : pending_surface_id_(0) {}
 
 WebAppWindowBase::~WebAppWindowBase() {
   DetachWebContents();
@@ -130,7 +131,7 @@ void WebAppWindowBase::InitWindow(int width, int height) {
   params.bounds.set_height(height);
   params.show_state = ui::SHOW_STATE_DEFAULT;
   params.type = views::Widget::InitParams::TYPE_WINDOW_FRAMELESS;
-  webapp_window_ = new WebAppWindow(params);
+  webapp_window_ = new WebAppWindow(params, pending_surface_id_);
   webapp_window_->SetDelegate(this);
 
   if (switches::UseVizFMPWithTimeout())
@@ -246,7 +247,10 @@ void WebAppWindowBase::SetLocationHint(LocationHint value) {
 }
 
 void WebAppWindowBase::SetWindowSurfaceId(int surface_id) {
-  webapp_window_->SetWindowSurfaceId(surface_id);
+  if (webapp_window_)
+    webapp_window_->SetWindowSurfaceId(surface_id);
+  else
+    pending_surface_id_ = surface_id;
 }
 
 void WebAppWindowBase::SetOpacity(float opacity) {

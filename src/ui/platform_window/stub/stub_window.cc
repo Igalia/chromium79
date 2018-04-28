@@ -90,6 +90,8 @@ void StubWindow::MoveCursorTo(const gfx::Point& location) {}
 
 void StubWindow::ConfineCursorToBounds(const gfx::Rect& bounds) {}
 
+void StubWindow::SetSurfaceId(int surface_id) {}
+
 void StubWindow::SetRestoredBoundsInPixels(const gfx::Rect& bounds) {}
 
 gfx::Rect StubWindow::GetRestoredBoundsInPixels() const {

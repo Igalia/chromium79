@@ -154,12 +154,13 @@ class WebAppScrollObserver
 };
 
 WebAppWindow::WebAppWindow(const CreateParams& params,
-                           WebAppWindowDelegate* delegate)
+                           WebAppWindowDelegate* delegate, int surface_id)
     : delegate_(delegate),
       params_(params),
       rect_(params.bounds),
       window_host_state_(ui::WidgetState::UNINITIALIZED),
-      window_host_state_about_to_change_(ui::WidgetState::UNINITIALIZED) {
+      window_host_state_about_to_change_(ui::WidgetState::UNINITIALIZED),
+      window_surface_id_(surface_id) {
   InitWindow();
 
   ComputeScaleFactor();
@@ -747,6 +748,9 @@ void WebAppWindow::InitWindow() {
                                            desktop_native_widget_aura_);
 
   if (host_) {
+    if (window_surface_id_)
+      host_->SetWindowSurfaceId(window_surface_id_);
+
     aura::WindowTreeHost* wth = host_->AsWindowTreeHost();
 
     wth->AddPreTargetHandler(this);
