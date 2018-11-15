@@ -53,6 +53,14 @@ void IVIShellSurface::InitializeShellSurface(WaylandWindow* window,
                                                 surface_id, GetWLSurface());
 
   DCHECK(ivi_surface_);
+
+  static const ivi_surface_listener ivi_surface_event_listener = {
+    IVIShellSurface::HandleConfigure,
+  };
+
+  ivi_surface_add_listener(ivi_surface_,
+                           &ivi_surface_event_listener, window);
+
 }
 
 void IVIShellSurface::UpdateShellSurface(WaylandWindow::ShellType type,
@@ -76,6 +84,13 @@ void IVIShellSurface::Unminimize() {
 
 bool IVIShellSurface::IsMinimized() const {
   return false;
+}
+
+void IVIShellSurface::HandleConfigure(void* data,
+                                     struct ivi_surface* surface,
+                                     int32_t width,
+                                     int32_t height) {
+  WaylandShellSurface::WindowResized(data, width, height);
 }
 
 }  // namespace ozonewayland
