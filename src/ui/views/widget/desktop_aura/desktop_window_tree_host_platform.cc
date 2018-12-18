@@ -143,6 +143,9 @@ void DesktopWindowTreeHostPlatform::Init(const Widget::InitParams& params) {
   // Calculate initial bounds.
   properties.bounds = ToPixelRect(params.bounds);
 
+  properties.surface_id = pending_surface_id_;
+  pending_surface_id_ = 0;
+
   CreateAndSetPlatformWindow(std::move(properties));
   // Disable compositing on tooltips as a workaround for
   // https://crbug.com/442111.
@@ -474,6 +477,13 @@ bool DesktopWindowTreeHostPlatform::SetWindowTitle(
   window_title_ = title;
   platform_window()->SetTitle(window_title_);
   return true;
+}
+
+void DesktopWindowTreeHostPlatform::SetWindowSurfaceId(int surface_id) {
+  if (platform_window())
+    platform_window()->SetSurfaceId(surface_id);
+  else
+    pending_surface_id_ = surface_id;
 }
 
 void DesktopWindowTreeHostPlatform::ClearNativeFocus() {

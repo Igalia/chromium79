@@ -156,6 +156,8 @@ WaylandWindow* WaylandWindow::FromSurface(wl_surface* surface) {
 bool WaylandWindow::Initialize(PlatformWindowInitProperties properties) {
   DCHECK(shell_objects_factory_);
 
+  surface_id_ = properties.surface_id;
+
   // Properties contain DIP bounds but the buffer scale is initially 1 so it's
   // OK to assign.  The bounds will be recalculated when the buffer scale
   // changes.
@@ -614,6 +616,11 @@ void WaylandWindow::SetWindowIcons(const gfx::ImageSkia& window_icon,
 
 void WaylandWindow::SizeConstraintsChanged() {
   NOTIMPLEMENTED_LOG_ONCE();
+}
+
+void WaylandWindow::SetSurfaceId(int surface_id) {
+  NOTREACHED() << "WaylandWindow gets the surface id from the "
+    "PlatformWindowInitProperties passed to ::Initialize method";
 }
 
 bool WaylandWindow::CanDispatchEvent(const PlatformEvent& event) {

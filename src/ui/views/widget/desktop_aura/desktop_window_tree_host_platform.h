@@ -68,6 +68,7 @@ class VIEWS_EXPORT DesktopWindowTreeHostPlatform
   void SetVisibleOnAllWorkspaces(bool always_visible) override;
   bool IsVisibleOnAllWorkspaces() const override;
   bool SetWindowTitle(const base::string16& title) override;
+  void SetWindowSurfaceId(int surface_id) override;
   void ClearNativeFocus() override;
   Widget::MoveLoopResult RunMoveLoop(
       const gfx::Vector2d& drag_offset,
@@ -140,6 +141,11 @@ class VIEWS_EXPORT DesktopWindowTreeHostPlatform
   DesktopNativeWidgetAura* const desktop_native_widget_aura_;
 
   bool is_active_ = false;
+
+  // Some ozone platforms like wayland, may need surface id to be set
+  // to ensure right functionality. Currently, it is only used with
+  // Wayland and ivi_shell.
+  int pending_surface_id_ = 0;
 
   base::string16 window_title_;
 

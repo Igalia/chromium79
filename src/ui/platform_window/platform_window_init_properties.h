@@ -87,6 +87,9 @@ struct PlatformWindowInitProperties {
 
   // Stores visual id for the system tray in X11.
   base::Optional<int> x_visual_id;
+
+  // Surface id, which is used when ivi shell is used.
+  int surface_id = 0;
 #endif
 };
 

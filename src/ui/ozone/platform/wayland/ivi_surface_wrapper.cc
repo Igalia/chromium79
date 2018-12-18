@@ -6,9 +6,9 @@
 
 #include <ivi-application-client-protocol.h>
 
-#include "ui/ozone/platform/wayland/wayland_connection.h"
-#include "ui/ozone/platform/wayland/wayland_util.h"
-#include "ui/ozone/platform/wayland/wayland_window.h"
+#include "ui/ozone/platform/wayland/host/wayland_connection.h"
+#include "ui/ozone/platform/wayland/common/wayland_util.h"
+#include "ui/ozone/platform/wayland/host/wayland_window.h"
 
 namespace ui {
 

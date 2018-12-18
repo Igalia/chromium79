@@ -6,7 +6,6 @@
 #define UI_OZONE_PLATFORM_WAYLAND_IVI_SURFACE_WRAPPER_H_
 
 #include "ui/ozone/platform/wayland/host/shell_surface_wrapper.h"
-
 #include "base/macros.h"
 
 struct ivi_surface;
