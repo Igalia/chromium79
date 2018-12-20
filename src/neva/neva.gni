@@ -107,4 +107,7 @@ declare_args() {
 
   # Enable network error page controller WEBAPI
   enable_network_error_page_controller_webapi = is_webos
+
+  # Support single window mode
+  use_single_window_mode = is_webos || is_agl
 }
