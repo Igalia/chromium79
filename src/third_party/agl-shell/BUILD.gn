@@ -1,0 +1,19 @@
+config("agl_shell_protocol_config") {
+  include_dirs = [ "include/protocol" ]
+}
+
+source_set("agl_shell_protocol") {
+  sources = [
+    "include/protocol/agl-shell-client-protocol.h",
+    "protocol/agl-shell-protocol.c",
+  ]
+
+  deps = [
+    "//third_party/wayland:wayland_util",
+  ]
+
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [ "//build/config/compiler:no_chromium_code" ]
+
+  public_configs = [ ":agl_shell_protocol_config" ]
+}

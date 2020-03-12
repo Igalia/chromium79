@@ -36,6 +36,7 @@ struct wl_touch;
 struct wp_presentation;
 struct wp_presentation_feedback;
 struct xdg_shell;
+struct agl_shell;
 struct xdg_surface;
 struct xdg_popup;
 struct zwp_linux_dmabuf_v1;
@@ -218,6 +219,12 @@ template <>
 struct ObjectTraits<xdg_shell> {
   static const wl_interface* interface;
   static void (*deleter)(xdg_shell*);
+};
+
+template <>
+struct ObjectTraits<agl_shell> {
+  static const wl_interface* interface;
+  static void (*deleter)(agl_shell*);
 };
 
 template <>
