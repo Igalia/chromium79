@@ -114,6 +114,8 @@ source_set("wayland") {
     "host/xdg_surface_wrapper_v6.h",
     "ivi_surface_wrapper.cc",
     "ivi_surface_wrapper.h",
+    "agl_shell_wrapper.cc",
+    "agl_shell_wrapper.h",
     "host/zwp_text_input_wrapper.h",
     "host/zwp_text_input_wrapper_v1.cc",
     "host/zwp_text_input_wrapper_v1.h",

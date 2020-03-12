@@ -405,6 +405,7 @@ void WaylandConnection::Global(void* data,
 		LOG(ERROR) << "Failed to bind to agl_shell global";
 		return;
 	}
+	connection->agl_shell_manager = new AglShell(connection);
   } else if (!connection->text_input_manager_v1_ &&
              strcmp(interface, "zwp_text_input_manager_v1") == 0) {
     connection->text_input_manager_v1_ = wl::Bind<zwp_text_input_manager_v1>(

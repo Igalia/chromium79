@@ -31,6 +31,7 @@
 #include "ui/ozone/platform/wayland/host/wayland_seat.h"
 #include "ui/ozone/platform/wayland/host/wayland_seat_manager.h"
 #include "ui/ozone/platform/wayland/host/wayland_window_manager.h"
+#include "ui/ozone/platform/wayland/agl_shell_wrapper.h"
 
 namespace ui {
 
@@ -61,6 +62,7 @@ class WaylandConnection : public PlatformEventSource,
   xdg_shell* shell() const { return shell_.get(); }
   zxdg_shell_v6* shell_v6() const { return shell_v6_.get(); }
   ivi_application* ivi_shell() const { return ivi_application_; }
+  agl_shell *ashell() const { return agl_shell_.get(); }
   wl_seat* seat() const {
     if (wayland_seat_manager_ && wayland_seat_manager_->GetFirstSeat())
       return wayland_seat_manager_->GetFirstSeat()->seat();
@@ -97,6 +99,8 @@ class WaylandConnection : public PlatformEventSource,
 
   WaylandClipboard* clipboard() const { return clipboard_.get(); }
 
+  ui::AglShell *agl_shell_manager;
+  
   WaylandDataSource* drag_data_source() const {
     return dragdrop_data_source_.get();
   }
