@@ -150,6 +150,10 @@ class VIEWS_EXPORT DesktopWindowTreeHostPlatform
   // Wayland and ivi_shell.
   int pending_surface_id_ = 0;
 
+  int pending_agl_panel_edge_ = -1;
+  bool pending_agl_background_ = false;
+  bool pending_agl_ready_ = false;
+
   base::string16 window_title_;
 
   // We can optionally have a parent which can order us to close, or own

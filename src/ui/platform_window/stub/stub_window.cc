@@ -92,6 +92,12 @@ void StubWindow::ConfineCursorToBounds(const gfx::Rect& bounds) {}
 
 void StubWindow::SetSurfaceId(int surface_id) {}
 
+void StubWindow::SetAglPanel(int edge) {}
+
+void StubWindow::SetAglBackground(void) {}
+
+void StubWindow::SetAglReady(void) {}
+
 void StubWindow::SetRestoredBoundsInPixels(const gfx::Rect& bounds) {}
 
 gfx::Rect StubWindow::GetRestoredBoundsInPixels() const {

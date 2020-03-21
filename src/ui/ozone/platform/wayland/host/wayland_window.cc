@@ -20,6 +20,7 @@
 #include "ui/ozone/platform/wayland/host/wayland_connection.h"
 #include "ui/ozone/platform/wayland/host/wayland_cursor_position.h"
 #include "ui/ozone/platform/wayland/host/wayland_extension.h"
+#include "ui/ozone/platform/wayland/host/wayland_output.h"
 #include "ui/ozone/platform/wayland/host/wayland_output_manager.h"
 #include "ui/ozone/platform/wayland/host/wayland_pointer.h"
 #include "ui/ozone/platform/wayland/host/xdg_popup_wrapper_v5.h"
@@ -621,6 +622,30 @@ void WaylandWindow::SizeConstraintsChanged() {
 void WaylandWindow::SetSurfaceId(int surface_id) {
   NOTREACHED() << "WaylandWindow gets the surface id from the "
     "PlatformWindowInitProperties passed to ::Initialize method";
+}
+
+void
+WaylandWindow::SetAglPanel(int edge)
+{
+  WaylandOutputManager *wayland_manager = connection_->wayland_output_manager();
+  WaylandOutput *output = wayland_manager->GetPrimaryOutput();
+
+  connection_->agl_shell_manager->setPanel(this, output, edge);
+}
+
+void
+WaylandWindow::SetAglBackground(void)
+{
+  WaylandOutputManager *wayland_manager = connection_->wayland_output_manager();
+  WaylandOutput *output = wayland_manager->GetPrimaryOutput();
+
+  connection_->agl_shell_manager->setBackGround(this, output);
+}
+
+void
+WaylandWindow::SetAglReady(void)
+{
+  connection_->agl_shell_manager->ready();
 }
 
 bool WaylandWindow::CanDispatchEvent(const PlatformEvent& event) {

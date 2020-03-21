@@ -67,6 +67,10 @@ class PlatformWindowBase : public PropertyHandler {
 
   virtual void SetSurfaceId(int surface_id) = 0;
 
+  virtual void SetAglReady(void) = 0;
+  virtual void SetAglBackground() = 0;
+  virtual void SetAglPanel(int edge) = 0;
+
   virtual void SetCapture() = 0;
   virtual void ReleaseCapture() = 0;
   virtual bool HasCapture() const = 0;

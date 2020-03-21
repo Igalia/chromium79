@@ -489,16 +489,28 @@ void DesktopWindowTreeHostPlatform::SetWindowSurfaceId(int surface_id) {
 void
 DesktopWindowTreeHostPlatform::SetAglPanel(int edge)
 {
+  if (platform_window())
+    platform_window()->SetAglPanel(edge);
+  else
+    pending_agl_panel_edge_ = edge;
 }
 
 void
 DesktopWindowTreeHostPlatform::SetAglBackground(void)
 {
+  if (platform_window())
+    platform_window()->SetAglBackground();
+  else
+    pending_agl_background_ = true;
 }
 
 void
 DesktopWindowTreeHostPlatform::SetAglReady(void)
 {
+  if (platform_window())
+    platform_window()->SetAglReady();
+  else
+    pending_agl_ready_ = true;
 }
 
 void DesktopWindowTreeHostPlatform::ClearNativeFocus() {

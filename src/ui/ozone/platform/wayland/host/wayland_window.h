@@ -125,6 +125,9 @@ class WaylandWindow : public PlatformWindowLinux,
   void SetBounds(const gfx::Rect& bounds) override;
   gfx::Rect GetBounds() override;
   void SetSurfaceId(int surface_id) override;
+  void SetAglBackground(void) override;
+  void SetAglReady(void) override;
+  void SetAglPanel(int edge) override;
   void SetTitle(const base::string16& title) override;
   void SetCapture() override;
   void ReleaseCapture() override;
