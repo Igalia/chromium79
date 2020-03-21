@@ -486,6 +486,21 @@ void DesktopWindowTreeHostPlatform::SetWindowSurfaceId(int surface_id) {
     pending_surface_id_ = surface_id;
 }
 
+void
+DesktopWindowTreeHostPlatform::SetAglPanel(int edge)
+{
+}
+
+void
+DesktopWindowTreeHostPlatform::SetAglBackground(void)
+{
+}
+
+void
+DesktopWindowTreeHostPlatform::SetAglReady(void)
+{
+}
+
 void DesktopWindowTreeHostPlatform::ClearNativeFocus() {
   // This method is weird and misnamed. Instead of clearing the native focus,
   // it sets the focus to our content_window, which will trigger a cascade

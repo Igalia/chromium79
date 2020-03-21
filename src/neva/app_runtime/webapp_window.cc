@@ -397,6 +397,8 @@ WebAppWindow::SetAglBackground()
 {
   if (!host_)
     return;
+
+  host_->SetAglBackground();
 }
 
 void
@@ -404,6 +406,8 @@ WebAppWindow::SetAglReady()
 {
   if (!host_)
     return;
+
+  host_->SetAglReady();
 }
 
 void
@@ -411,6 +415,8 @@ WebAppWindow::SetAglPanel(int edge)
 {
   if (!host_)
     return;
+
+  host_->SetAglPanel(edge);
 }
 
 void WebAppWindow::Show() {

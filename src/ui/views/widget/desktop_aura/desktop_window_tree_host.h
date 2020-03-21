@@ -140,6 +140,10 @@ class VIEWS_EXPORT DesktopWindowTreeHost {
   virtual bool SetWindowTitle(const base::string16& title) = 0;
   virtual void SetWindowSurfaceId(int surface_id) {}
 
+  virtual void SetAglBackground() {}
+  virtual void SetAglPanel(int edge) {}
+  virtual void SetAglReady() {}
+
   virtual void ClearNativeFocus() = 0;
 
   virtual Widget::MoveLoopResult RunMoveLoop(
