@@ -68,6 +68,7 @@ class VIEWS_EXPORT DesktopWindowTreeHostPlatform
   void SetVisibleOnAllWorkspaces(bool always_visible) override;
   bool IsVisibleOnAllWorkspaces() const override;
   bool SetWindowTitle(const base::string16& title) override;
+  bool SetAglAppId(const base::string16& title) override;
   void SetWindowSurfaceId(int surface_id) override;
   void SetAglReady() override;
   void SetAglBackground() override;

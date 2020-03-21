@@ -83,6 +83,7 @@ class WebAppWindow : public views::NativeEventDelegate,
   void SetOpacity(float opacity);
   void SetRootLayerOpacity(float opacity);
   void SetWindowTitle(const base::string16& title);
+  void SetAglAppId(const base::string16& title);
   void SetBounds(int x, int y, int width, int height);
   void SetCustomCursor(CustomCursorType type,
                        const std::string& path,
@@ -202,6 +203,7 @@ class WebAppWindow : public views::NativeEventDelegate,
   int current_rotation_ = -1;
 
   base::string16 title_;
+  base::string16 app_id_;
   ui::WidgetState window_host_state_;
   ui::WidgetState window_host_state_about_to_change_;
   std::unique_ptr<wm::CursorManager> cursor_manager_;

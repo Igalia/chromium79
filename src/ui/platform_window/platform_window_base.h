@@ -66,6 +66,7 @@ class PlatformWindowBase : public PropertyHandler {
   virtual void SetTitle(const base::string16& title) = 0;
 
   virtual void SetSurfaceId(int surface_id) = 0;
+  virtual void SetAppId(const base::string16& title) = 0;
 
   virtual void SetAglReady(void) = 0;
   virtual void SetAglBackground() = 0;

@@ -138,6 +138,7 @@ class VIEWS_EXPORT DesktopWindowTreeHost {
 
   // Returns true if the title changed.
   virtual bool SetWindowTitle(const base::string16& title) = 0;
+  virtual bool SetAglAppId(const base::string16& title) = 0;
   virtual void SetWindowSurfaceId(int surface_id) {}
 
   virtual void SetAglBackground() {}

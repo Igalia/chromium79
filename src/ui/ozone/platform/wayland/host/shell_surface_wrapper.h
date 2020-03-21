@@ -57,6 +57,9 @@ class ShellSurfaceWrapper {
   // Sets a title of a native window.
   virtual void SetTitle(const base::string16& title) = 0;
 
+  // Sets the app id of a native window.
+  virtual void SetAppId(const base::string16& title) = 0;
+
   // Sends acknowledge configure event back to wayland.
   virtual void AckConfigure() = 0;
 

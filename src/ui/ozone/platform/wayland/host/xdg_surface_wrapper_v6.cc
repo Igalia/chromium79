@@ -103,6 +103,13 @@ void XDGSurfaceWrapperV6::SetTitle(const base::string16& title) {
                              base::UTF16ToUTF8(title).c_str());
 }
 
+void XDGSurfaceWrapperV6::SetAppId(const base::string16& title) {
+  DCHECK(zxdg_toplevel_v6_);
+  std::string conv_str = base::UTF16ToUTF8(title);
+  zxdg_toplevel_v6_set_app_id(zxdg_toplevel_v6_.get(), conv_str.c_str());
+}
+
+
 void XDGSurfaceWrapperV6::AckConfigure() {
   DCHECK(zxdg_surface_v6_);
   zxdg_surface_v6_ack_configure(zxdg_surface_v6_.get(),

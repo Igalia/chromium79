@@ -681,6 +681,12 @@ void WebAppWindow::SetWindowTitle(const base::string16& title) {
     widget_->UpdateWindowTitle();
 }
 
+void WebAppWindow::SetAglAppId(const base::string16& title) {
+  app_id_ = title;
+  if (widget_)
+    widget_->SetAglAppId(title);
+}
+
 base::string16 WebAppWindow::GetWindowTitle() const {
   return title_;
 }
@@ -795,6 +801,24 @@ void WebAppWindow::InitWindow() {
 
   if (params_.show_state == ui::SHOW_STATE_FULLSCREEN)
     widget_->SetFullscreen(true);
+
+  if (host_) {
+    if (params_.pending_agl_background_) {
+      LOG(INFO) << "params_.pending_agl_background_ is set";
+      host_->SetAglBackground();
+    }
+
+    if (params_.pending_agl_ready_) {
+      LOG(INFO) << "params_.pending_agl_ready is set";
+      host_->SetAglReady();
+    }
+
+    if (params_.pending_agl_edge_ != -1) {
+      LOG(INFO) << "params_.pending_agl_edge_ is set to " <<
+	params_.pending_agl_edge_;
+      host_->SetAglPanel(params_.pending_agl_edge_);
+    }
+  }
 
   SetLocationHint(params_.location_hint);
 }

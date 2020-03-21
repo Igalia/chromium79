@@ -17,6 +17,7 @@
 #include "webos/webapp_window_base.h"
 
 #include "base/logging.h"
+#include "base/strings/utf_string_conversions.h"
 #include "components/viz/common/switches.h"
 #include "neva/app_runtime/public/app_runtime_constants.h"
 #include "neva/app_runtime/public/window_group_configuration.h"
@@ -281,6 +282,19 @@ WebAppWindowBase::SetAglPanel(int edge)
     webapp_window_->SetAglPanel(edge);
   else
     pending_agl_edge_ = edge;
+}
+
+void
+WebAppWindowBase::SetAglAppId(const char *app_id)
+{
+  base::string16 m_app_id;
+  base::UTF8ToUTF16(app_id, strlen(app_id), &m_app_id);
+
+  if (webapp_window_) {
+    webapp_window_->SetAglAppId(m_app_id);
+  } else {
+    LOG(INFO) << ">>> webapp_window_ is not set, doing nothing with " << app_id;
+  }
 }
 
 void WebAppWindowBase::SetOpacity(float opacity) {

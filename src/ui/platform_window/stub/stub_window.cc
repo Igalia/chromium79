@@ -49,6 +49,8 @@ gfx::Rect StubWindow::GetBounds() {
 
 void StubWindow::SetTitle(const base::string16& title) {}
 
+void StubWindow::SetAppId(const base::string16& title) {}
+
 void StubWindow::SetCapture() {}
 
 void StubWindow::ReleaseCapture() {}

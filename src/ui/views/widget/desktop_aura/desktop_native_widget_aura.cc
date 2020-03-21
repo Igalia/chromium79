@@ -718,6 +718,12 @@ bool DesktopNativeWidgetAura::SetWindowTitle(const base::string16& title) {
   return desktop_window_tree_host_->SetWindowTitle(title);
 }
 
+bool DesktopNativeWidgetAura::SetAglAppId(const base::string16& title) {
+  if (!content_window_)
+    return false;
+  return desktop_window_tree_host_->SetAglAppId(title);
+}
+
 void DesktopNativeWidgetAura::SetWindowIcons(const gfx::ImageSkia& window_icon,
                                              const gfx::ImageSkia& app_icon) {
   if (content_window_)

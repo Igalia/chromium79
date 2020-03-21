@@ -71,6 +71,10 @@ void XDGSurfaceWrapperV5::SetTitle(const base::string16& title) {
   xdg_surface_set_title(xdg_surface_.get(), base::UTF16ToUTF8(title).c_str());
 }
 
+void XDGSurfaceWrapperV5::SetAppId(const base::string16& title) {
+  xdg_surface_set_app_id(xdg_surface_.get(), base::UTF16ToUTF8(title).c_str());
+}
+
 void XDGSurfaceWrapperV5::AckConfigure() {
   xdg_surface_ack_configure(xdg_surface_.get(), pending_configure_serial_);
 }

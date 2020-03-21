@@ -88,6 +88,7 @@ class WEBOS_EXPORT WebAppWindowBase : public WebAppWindowDelegate {
   void SetAglBackground(void);
   void SetAglPanel(int edge);
   void SetAglReady(void);
+  void SetAglAppId(const char *app_id);
 
   void CreateWindowGroup(const WindowGroupConfiguration& config);
   void AttachToWindowGroup(const std::string& name, const std::string& layer);

@@ -129,6 +129,7 @@ class WaylandWindow : public PlatformWindowLinux,
   void SetAglReady(void) override;
   void SetAglPanel(int edge) override;
   void SetTitle(const base::string16& title) override;
+  void SetAppId(const base::string16& title) override;
   void SetCapture() override;
   void ReleaseCapture() override;
   bool HasCapture() const override;
