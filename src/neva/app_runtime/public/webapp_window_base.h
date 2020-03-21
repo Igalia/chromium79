@@ -77,6 +77,9 @@ class APP_RUNTIME_EXPORT WebAppWindowBase : WebAppWindowDelegate {
     WindowShowState show_state = WindowShowState::kDefault;
     WebContents* web_contents = nullptr;
     LocationHint location_hint = LocationHint::kUnknown;
+    int pending_agl_edge_;
+    bool pending_agl_background_;
+    bool pending_agl_ready_;
   };
 
   WebAppWindowBase();

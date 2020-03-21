@@ -131,6 +131,9 @@ void WebAppWindowBase::InitWindow(int width, int height) {
   params.bounds.set_height(height);
   params.show_state = ui::SHOW_STATE_DEFAULT;
   params.type = views::Widget::InitParams::TYPE_WINDOW_FRAMELESS;
+  params.pending_agl_background_ = pending_agl_background_;
+  params.pending_agl_edge_ = pending_agl_edge_;
+  params.pending_agl_ready_ = pending_agl_ready_;
   webapp_window_ = new WebAppWindow(params, pending_surface_id_);
   webapp_window_->SetDelegate(this);
 
@@ -251,6 +254,33 @@ void WebAppWindowBase::SetWindowSurfaceId(int surface_id) {
     webapp_window_->SetWindowSurfaceId(surface_id);
   else
     pending_surface_id_ = surface_id;
+}
+
+void
+WebAppWindowBase::SetAglBackground(void)
+{
+  if (webapp_window_)
+    webapp_window_->SetAglBackground();
+  else
+    pending_agl_background_ = true;
+}
+
+void
+WebAppWindowBase::SetAglReady(void)
+{
+  if (webapp_window_)
+    webapp_window_->SetAglReady();
+else
+    pending_agl_ready_ = true;
+}
+
+void
+WebAppWindowBase::SetAglPanel(int edge)
+{
+  if (webapp_window_)
+    webapp_window_->SetAglPanel(edge);
+  else
+    pending_agl_edge_ = edge;
 }
 
 void WebAppWindowBase::SetOpacity(float opacity) {

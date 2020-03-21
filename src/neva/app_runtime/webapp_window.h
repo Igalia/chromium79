@@ -60,6 +60,9 @@ class WebAppWindow : public views::NativeEventDelegate,
     ui::WindowShowState show_state = ui::SHOW_STATE_DEFAULT;
     content::WebContents* web_contents = nullptr;
     gfx::LocationHint location_hint = gfx::LocationHint::kUnknown;
+    int pending_agl_edge_ = -1;
+    bool pending_agl_background_ = false;
+    bool pending_agl_ready_ = false;
   };
   WebAppWindow(const CreateParams& params, WebAppWindowDelegate* delegate, int surface_id);
   ~WebAppWindow() override;
@@ -88,6 +91,9 @@ class WebAppWindow : public views::NativeEventDelegate,
   void SetWindowProperty(const std::string& name, const std::string& value);
   void SetWindowSurfaceId(int surface_id);
   void SetLocationHint(gfx::LocationHint value);
+  void SetAglBackground(void);
+  void SetAglReady(void);
+  void SetAglPanel(int edge);
   void Show();
   void Hide();
   void Minimize();

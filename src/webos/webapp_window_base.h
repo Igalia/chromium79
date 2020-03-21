@@ -85,6 +85,10 @@ class WEBOS_EXPORT WebAppWindowBase : public WebAppWindowDelegate {
   void SetUseVirtualKeyboard(bool enable);
   void InitWindow(int width, int height);
 
+  void SetAglBackground(void);
+  void SetAglPanel(int edge);
+  void SetAglReady(void);
+
   void CreateWindowGroup(const WindowGroupConfiguration& config);
   void AttachToWindowGroup(const std::string& name, const std::string& layer);
   void FocusWindowGroupOwner();
@@ -106,6 +110,10 @@ class WEBOS_EXPORT WebAppWindowBase : public WebAppWindowDelegate {
  private:
   WebAppWindow* webapp_window_ = nullptr;
   int pending_surface_id_;
+
+  int pending_agl_edge_ = -1;
+  bool pending_agl_background_ = false;
+  bool pending_agl_ready_ = false;
 };
 
 }  // namespace webos
