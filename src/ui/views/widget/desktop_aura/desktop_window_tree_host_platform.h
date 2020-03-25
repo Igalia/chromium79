@@ -73,6 +73,7 @@ class VIEWS_EXPORT DesktopWindowTreeHostPlatform
   void SetAglReady() override;
   void SetAglBackground() override;
   void SetAglPanel(int edge) override;
+  void SetAglActivateApp(std::string app) override;
   void ClearNativeFocus() override;
   Widget::MoveLoopResult RunMoveLoop(
       const gfx::Vector2d& drag_offset,

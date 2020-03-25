@@ -144,6 +144,7 @@ class VIEWS_EXPORT DesktopWindowTreeHost {
   virtual void SetAglBackground() {}
   virtual void SetAglPanel(int edge) {}
   virtual void SetAglReady() {}
+  virtual void SetAglActivateApp(std::string app) {}
 
   virtual void ClearNativeFocus() = 0;
 

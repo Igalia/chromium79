@@ -95,6 +95,7 @@ class WebAppWindow : public views::NativeEventDelegate,
   void SetAglBackground(void);
   void SetAglReady(void);
   void SetAglPanel(int edge);
+  void SetAglActivateApp(std::string app);
   void Show();
   void Hide();
   void Minimize();

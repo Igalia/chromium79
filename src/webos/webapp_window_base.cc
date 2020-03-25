@@ -285,6 +285,13 @@ WebAppWindowBase::SetAglPanel(int edge)
 }
 
 void
+WebAppWindowBase::SetAglActivateApp(const char *app_id)
+{
+	if (webapp_window_)
+		webapp_window_->SetAglActivateApp(std::string(app_id));
+}
+
+void
 WebAppWindowBase::SetAglAppId(const char *app_id)
 {
   base::string16 m_app_id;

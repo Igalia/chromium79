@@ -61,6 +61,7 @@ class STUB_WINDOW_EXPORT StubWindow : public PlatformWindowBase {
   void SetAglBackground() override;
   void SetAglPanel(int edge) override;
   void SetAglReady() override;
+  void SetAglActivateApp(std::string app) override;
   PlatformWindowDelegate* delegate_;
   gfx::Rect bounds_;
 

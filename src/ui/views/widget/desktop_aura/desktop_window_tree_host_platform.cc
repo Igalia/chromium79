@@ -521,6 +521,13 @@ DesktopWindowTreeHostPlatform::SetAglReady(void)
     pending_agl_ready_ = true;
 }
 
+void
+DesktopWindowTreeHostPlatform::SetAglActivateApp(std::string app)
+{
+	if (platform_window())
+		platform_window()->SetAglActivateApp(app);
+}
+
 void DesktopWindowTreeHostPlatform::ClearNativeFocus() {
   // This method is weird and misnamed. Instead of clearing the native focus,
   // it sets the focus to our content_window, which will trigger a cascade

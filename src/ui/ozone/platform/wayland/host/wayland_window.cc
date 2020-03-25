@@ -640,6 +640,17 @@ WaylandWindow::SetAglPanel(int edge)
 }
 
 void
+WaylandWindow::SetAglActivateApp(std::string app)
+{
+	WaylandOutputManager *wayland_manager = connection_->wayland_output_manager();
+	WaylandOutput *output = wayland_manager->GetPrimaryOutput();
+
+	connection_->agl_shell_manager->activateApp(app.c_str(), output);
+	/* force a flush to send it, otherwise the request is not be sent */
+	connection_->ScheduleFlush();
+}
+
+void
 WaylandWindow::SetAglBackground(void)
 {
   WaylandOutputManager *wayland_manager = connection_->wayland_output_manager();

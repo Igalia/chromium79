@@ -100,6 +100,8 @@ void StubWindow::SetAglBackground(void) {}
 
 void StubWindow::SetAglReady(void) {}
 
+void StubWindow::SetAglActivateApp(std::string app) {}
+
 void StubWindow::SetRestoredBoundsInPixels(const gfx::Rect& bounds) {}
 
 gfx::Rect StubWindow::GetRestoredBoundsInPixels() const {
