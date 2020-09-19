@@ -39,6 +39,8 @@ declare_args() {
 
   is_webos = false
 
+  is_agl = false
+
   webos_product_type = "default"
 
   # Use Neva app runtime
