@@ -321,7 +321,7 @@ class WebWidgetClient {
   // submitted (still called "swapped") to the display compositor (either with
   // DidSwap or DidNotSwap).
   virtual void NotifySwapTime(ReportTimeCallback callback) {}
-#if defined(OS_WEBOS)
+#if defined(USE_NEVA_APPRUNTIME)
   virtual void NotifyVizFMPSwap(bool is_first_contentful_paint,
                                 bool did_reset_container_state) {}
 #endif
