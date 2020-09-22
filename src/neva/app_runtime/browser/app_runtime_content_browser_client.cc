@@ -650,11 +650,13 @@ void AppRuntimeContentBrowserClient::SetCORBDisabledOnIOThread(int process_id,
   if (!GetNetworkService())
     return;
 
+#if defined(OS_WEBOS)
   if (disabled) {
     GetNetworkService()->AddCorbExceptionForProcess(process_id);
   } else {
     GetNetworkService()->RemoveCorbExceptionForProcess(process_id);
   }
+#endif
 }
 
 }  // namespace neva_app_runtime
