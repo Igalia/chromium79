@@ -19,7 +19,6 @@
 #include "base/i18n/rtl.h"
 #include "neva/app_runtime/browser/net/app_runtime_network_change_notifier.h"
 #include "ozone/wayland/display.h"
-#include "ozone/wayland/shell/webos_shell_surface.h"
 #include "ozone/wayland/window.h"
 #include "ui/base/resource/resource_bundle.h"
 #include "ui/views/widget/desktop_aura/neva/ui_constants.h"
