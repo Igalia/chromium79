@@ -46,5 +46,5 @@ declare_args() {
   libdir = "/usr/lib"
 
   cbe_data_dir = "$libdir/cbe"
-  cbe_data_locales_dir = "$cbe_data_dir/neva_locales"
+  cbe_data_locales_dir = "$cbe_data_dir/locales"
 }

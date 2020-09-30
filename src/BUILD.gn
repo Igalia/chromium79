@@ -732,7 +732,7 @@ group("gn_all") {
       "//neva/neva_unittests",
     ]
 
-    if (is_webos) {
+    if (is_webos || is_agl) {
       deps += [ "//webos/install" ]
     }
 
