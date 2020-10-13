@@ -48,9 +48,6 @@ copy("weboswebruntime") {
   if (use_lttng) {
     deps += [ ":lttng_provider" ]               # for libchromium_lttng_provider.so
   }
-  if (use_wayland_gbm) {
-    deps += [ ":minigbm" ]                      # for libminigbm.so
-  }
 }
 
 if (use_lttng) {
@@ -63,20 +60,6 @@ if (use_lttng) {
 
     deps = [
       "//base/trace_event/neva/lttng:lttng_provider"
-    ]
-  }
-}
-
-if (use_wayland_gbm) {
-  copy("minigbm") {
-    testonly = true
-    sources = [
-      "$root_out_dir/libminigbm.so"
-    ]
-    outputs = [ "$image_path/$libdir/{{source_file_part}}" ]
-
-    deps = [
-      "//third_party/minigbm:minigbm"
     ]
   }
 }
