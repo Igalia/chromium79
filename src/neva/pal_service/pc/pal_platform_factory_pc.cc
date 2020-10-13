@@ -17,6 +17,8 @@
 #include "neva/pal_service/pal_platform_factory.h"
 
 #include "neva/pal_service/memorymanager_delegate.h"
+#include "neva/pal_service/network_error_page_controller_delegate.h"
+
 #include <memory>
 
 namespace pal {
@@ -31,6 +33,11 @@ std::unique_ptr<SystemServiceBridgeDelegate>
         std::string,
         SystemServiceBridgeDelegate::Response) {
   return std::unique_ptr<SystemServiceBridgeDelegate>();
+}
+
+std::unique_ptr<NetworkErrorPageControllerDelegate>
+    PlatformFactory::CreateNetworkErrorPageControllerDelegate() {
+  return nullptr;
 }
 
 }  // namespace pal
