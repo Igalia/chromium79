@@ -26,6 +26,7 @@
 #include "ui/ozone/platform/wayland/host/xdg_popup_wrapper_v6.h"
 #include "ui/ozone/platform/wayland/host/xdg_surface_wrapper_v5.h"
 #include "ui/ozone/platform/wayland/host/xdg_surface_wrapper_v6.h"
+#include "ui/ozone/platform/wayland/ivi_surface_wrapper.h"
 #include "ui/platform_window/platform_window_handler/wm_drop_handler.h"
 
 namespace ui {
@@ -49,6 +50,9 @@ class ShellObjectFactory {
     if (surface)
       return surface;
 
+    if (connection->ivi_shell())
+      return std::make_unique<IviSurfaceWrapper>(wayland_window);
+
     if (connection->shell_v6())
       return std::make_unique<XDGSurfaceWrapperV6>(wayland_window);
 
@@ -61,6 +65,10 @@ class ShellObjectFactory {
   std::unique_ptr<ShellPopupWrapper> CreateShellPopup(
       WaylandConnection* connection,
       WaylandWindow* wayland_window) {
+
+    CHECK(!connection->ivi_shell()) <<
+      "There must be no popup windows created when ivi shell is used";
+
     std::unique_ptr<ShellPopupWrapper> popup;
     if (connection->extension())
       popup = connection->extension()->CreateShellPopup(wayland_window);

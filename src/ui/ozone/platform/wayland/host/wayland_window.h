@@ -99,6 +99,8 @@ class WaylandWindow : public PlatformWindowLinux,
 
   bool is_active() const { return is_active_; }
 
+  int surface_id() const { return surface_id_; }
+
   const base::flat_set<uint32_t>& entered_outputs_ids() const {
     return entered_outputs_ids_;
   }
@@ -303,6 +305,8 @@ class WaylandWindow : public PlatformWindowLinux,
   // been hidden at least once.  To determine which output the popup belongs to,
   // we ask its parent.
   base::flat_set<uint32_t> entered_outputs_ids_;
+
+  int surface_id_ = 0;
 
   DISALLOW_COPY_AND_ASSIGN(WaylandWindow);
 };

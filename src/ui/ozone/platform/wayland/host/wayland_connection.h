@@ -10,6 +10,8 @@
 #include <string>
 #include <vector>
 
+#include <ivi-application-client-protocol.h>
+
 #include "base/files/file.h"
 #include "base/message_loop/message_pump_for_ui.h"
 #include "ui/events/platform/platform_event_source.h"
@@ -57,6 +59,7 @@ class WaylandConnection : public PlatformEventSource,
   wl_subcompositor* subcompositor() const { return subcompositor_.get(); }
   xdg_shell* shell() const { return shell_.get(); }
   zxdg_shell_v6* shell_v6() const { return shell_v6_.get(); }
+  ivi_application* ivi_shell() const { return ivi_application_; }
   wl_seat* seat() const {
     if (wayland_seat_manager_ && wayland_seat_manager_->GetFirstSeat())
       return wayland_seat_manager_->GetFirstSeat()->seat();
@@ -198,6 +201,8 @@ class WaylandConnection : public PlatformEventSource,
   wl::Object<wl_subcompositor> subcompositor_;
   wl::Object<xdg_shell> shell_;
   wl::Object<zxdg_shell_v6> shell_v6_;
+  // TODO(msisov): use wl::Object.
+  ivi_application* ivi_application_ = nullptr;
   wl::Object<wp_presentation> presentation_;
   wl::Object<zwp_text_input_manager_v1> text_input_manager_v1_;
 

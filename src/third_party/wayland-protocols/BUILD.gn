@@ -17,6 +17,28 @@ wayland_protocol("xdg_shell_protocol") {
   ]
 }
 
+# @FIXME! use the wayland_protol template and generate the protocol
+# files from the .xml
+config("ivi_application_protocol_config") {
+  include_dirs = [ "include/protocol" ]
+}
+
+source_set("ivi_application_protocol") {
+  sources = [
+    "include/protocol/ivi-application-client-protocol.h",
+    "protocol/ivi-application-protocol.c",
+  ]
+
+  deps = [
+    "//third_party/wayland:wayland_util",
+  ]
+
+  configs -= [ "//build/config/compiler:chromium_code" ]
+  configs += [ "//build/config/compiler:no_chromium_code" ]
+
+  public_configs = [ ":ivi_application_protocol_config" ]
+}
+
 wayland_protocol("linux_dmabuf_protocol") {
   sources = [
     "src/unstable/linux-dmabuf/linux-dmabuf-unstable-v1.xml",
