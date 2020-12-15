@@ -327,8 +327,8 @@ source_set("wayland_unittests") {
     ]
     deps += [
       "//build/config/linux/libdrm",
-      "//ui/gfx/linux:drm",
-      "//ui/gfx/linux:gbm",
+      "//ui/ozone/common/linux:drm",
+      "//ui/ozone/common/linux:gbm",
     ]
     defines += [ "WAYLAND_GBM" ]
   }
