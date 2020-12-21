@@ -102,7 +102,7 @@ class WaylandBufferManagerHost::Surface {
     // Another case, which always happen is waiting until the frame callback is
     // completed. Thus, wait here when the Wayland compositor fires the frame
     // callback.
-    if (!buffer->wl_buffer || wl_frame_callback_) {
+    if (!buffer->wl_buffer || wl_frame_callback_ || !configured_) {
       pending_buffer_ = buffer;
       return true;
     }
@@ -155,6 +155,7 @@ class WaylandBufferManagerHost::Surface {
       return;
 
     DCHECK(!buffer->wl_buffer);
+    DCHECK(configured_);
     buffer->wl_buffer = std::move(new_buffer);
     buffer->attached = true;
 
@@ -187,12 +188,26 @@ class WaylandBufferManagerHost::Surface {
     // callback. Check more comments below where the variable is declared.
     contents_reset_ = true;
 
+    // ResetSurfaceContents happens upon WaylandWindow::Hide call, which
+    // destroyes xdg_surface, xdg_popup, etc. They are going to be reinitialized
+    // once WaylandWindow::Show is called. Thus, they will have to be configured
+    // once again before buffers can be attached.
+    configured_ = false;
+
     connection_->ScheduleFlush();
   }
 
   bool BufferExists(uint32_t buffer_id) const {
     auto* buffer = GetBuffer(buffer_id);
     return !!buffer;
+  }
+
+  void OnWindowConfigured() {
+    if (configured_)
+      return;
+    
+    configured_ = true;
+    ProcessPendingBuffer();
   }
 
  private:
@@ -469,6 +484,8 @@ class WaylandBufferManagerHost::Surface {
   // operation.
   wl::Object<wl_callback> wl_frame_callback_;
 
+  bool configured_;
+
   // A presentation feedback provided by the Wayland server once frame is
   // shown.
   PresentationFeedbackQueue presentation_feedbacks_;
@@ -517,6 +534,13 @@ void WaylandBufferManagerHost::OnWindowRemoved(WaylandWindow* window) {
   DCHECK(window);
   auto ret = surfaces_.erase(window->GetWidget());
   DCHECK(ret);
+}
+
+void WaylandBufferManagerHost::OnWindowConfigured(WaylandWindow* window) {
+  DCHECK(window);
+  auto it = surfaces_.find(window->GetWidget());
+  DCHECK(it != surfaces_.end());
+  it->second->OnWindowConfigured();
 }
 
 void WaylandBufferManagerHost::SetTerminateGpuCallback(

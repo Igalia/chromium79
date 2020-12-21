@@ -59,6 +59,7 @@ class XDGSurfaceWrapperV6 : public ShellSurfaceWrapper {
 
  private:
   WaylandWindow* wayland_window_;
+  WaylandConnection* connection_ = nullptr;
   uint32_t pending_configure_serial_;
   wl::Object<zxdg_surface_v6> zxdg_surface_v6_;
   wl::Object<zxdg_toplevel_v6> zxdg_toplevel_v6_;

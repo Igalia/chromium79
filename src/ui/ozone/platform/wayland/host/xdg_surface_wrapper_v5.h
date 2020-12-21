@@ -51,6 +51,7 @@ class XDGSurfaceWrapperV5 : public ShellSurfaceWrapper {
 
  private:
   WaylandWindow* wayland_window_;
+  WaylandConnection* connection_ = nullptr;
   uint32_t pending_configure_serial_;
   wl::Object<xdg_surface> xdg_surface_;
 

@@ -93,4 +93,9 @@ std::vector<WaylandWindow*> WaylandWindowManager::GetAllWindows() const {
   return result;
 }
 
+void WaylandWindowManager::NotifyWindowConfigured(WaylandWindow* window) {
+  for (WaylandWindowObserver& observer : observers_)
+    observer.OnWindowConfigured(window);
+}
+
 }  // namespace ui

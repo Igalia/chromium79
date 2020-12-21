@@ -323,6 +323,11 @@ void WaylandWindow::CreateAndShowTooltipSubSurface() {
   wl_subsurface_set_desync(tooltip_subsurface_.get());
   wl_surface_commit(parent_window_->surface());
   connection_->ScheduleFlush();
+
+  // Notify the observers the window has been configured. Please note that
+  // subsurface doesn't send ack configure events. Thus, notify the observers as
+  // soon as the subsurface is created.
+  connection_->wayland_window_manager()->NotifyWindowConfigured(this);
 }
 
 void WaylandWindow::ApplyPendingBounds() {

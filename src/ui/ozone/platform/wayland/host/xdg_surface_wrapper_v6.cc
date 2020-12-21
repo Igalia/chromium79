@@ -40,6 +40,7 @@ bool XDGSurfaceWrapperV6::Initialize(WaylandConnection* connection,
     LOG(ERROR) << "Failed to create zxdg_surface";
     return false;
   }
+  connection_ = connection;
   zxdg_surface_v6_add_listener(zxdg_surface_v6_.get(),
                                &zxdg_surface_v6_listener, this);
   // XDGPopupV6 requires a separate surface to be created, so this is just a
@@ -114,6 +115,8 @@ void XDGSurfaceWrapperV6::AckConfigure() {
   DCHECK(zxdg_surface_v6_);
   zxdg_surface_v6_ack_configure(zxdg_surface_v6_.get(),
                                 pending_configure_serial_);
+  connection_->wayland_window_manager()->NotifyWindowConfigured(
+      wayland_window_);
 }
 
 void XDGSurfaceWrapperV6::SetWindowGeometry(const gfx::Rect& bounds) {

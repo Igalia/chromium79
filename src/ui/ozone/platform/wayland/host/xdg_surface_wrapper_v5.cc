@@ -31,6 +31,7 @@ bool XDGSurfaceWrapperV5::Initialize(WaylandConnection* connection,
     LOG(ERROR) << "Failed to create xdg_surface";
     return false;
   }
+  connection_ = connection;
   xdg_surface_add_listener(xdg_surface_.get(), &xdg_surface_listener, this);
   return true;
 }
@@ -77,6 +78,8 @@ void XDGSurfaceWrapperV5::SetAppId(const base::string16& title) {
 
 void XDGSurfaceWrapperV5::AckConfigure() {
   xdg_surface_ack_configure(xdg_surface_.get(), pending_configure_serial_);
+  connection_->wayland_window_manager()->NotifyWindowConfigured(
+      wayland_window_);
 }
 
 void XDGSurfaceWrapperV5::SetWindowGeometry(const gfx::Rect& bounds) {

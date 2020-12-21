@@ -49,6 +49,10 @@ class WaylandWindowManager {
   void AddWindow(gfx::AcceleratedWidget widget, WaylandWindow* window);
   void RemoveWindow(gfx::AcceleratedWidget widget);
 
+  // Notifies observers that the Window has been ack configured and
+  // WaylandBufferManagerHost can start attaching buffers to the |surface_|.
+  void NotifyWindowConfigured(WaylandWindow* window);
+
  private:
   base::ObserverList<WaylandWindowObserver> observers_;
 
