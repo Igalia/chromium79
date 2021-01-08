@@ -57,6 +57,11 @@ bool WebOSContentMainDelegate::BasicStartupComplete(int* exit_code) {
 
 #if defined(USE_PMLOG)
   logging::PmLogProvider::Initialize("wam.log");
+#else
+  logging::LoggingSettings settings;
+  logging::InitLogging(settings);
+  logging::SetLogItems(true /* Process ID */, true /* Thread ID */,
+                       true /* Timestamp */, false /* Tick count */);
 #endif
   return false;
 }
